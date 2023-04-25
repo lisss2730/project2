@@ -19,7 +19,7 @@ line.addLayout(line2)
 line3 = QHBoxLayout()
 line.addLayout(line3)
 
-
+q=0
 vopr =[
     ['25+25=?', '60', '50', '30' ],
     ['15-65=?', '-25', '-50', '50' ]
@@ -27,10 +27,10 @@ vopr =[
 ]
 
 
-quest = QLabel(vopr[0][0]) # vopr[q][0] ===> q+=1
-b1 = QRadioButton(vopr[0][1])
-b2 = QRadioButton(vopr[0][2])
-b3 = QRadioButton(vopr[0][3])
+quest = QLabel(vopr[q][0]) # vopr[q][0] ===> q+=1
+b1 = QRadioButton(vopr[q][1])
+b2 = QRadioButton(vopr[q][2])
+b3 = QRadioButton(vopr[q][3])
 
 line1.addWidget(quest, alignment=Qt.AlignCenter)
 line2.addWidget(b1)
@@ -39,6 +39,9 @@ line2.addWidget(b3)
 
 kn = QPushButton('следующий вопрос')
 line3.addWidget(kn)
+
+kn2 = QPushButton('завершить')
+line3.addWidget(kn2)
 
 def otvet():
     if b2.isChecked():
@@ -52,7 +55,14 @@ def otvet():
 
 b2.clicked.connect(otvet)
         
+
 def vopros():
+    global q
+    q+=1
+    quest.setText(vopr[q][0])
+    b1.setText(vopr[q][1])
+    b2.setText(vopr[q][2])
+    b3.setText(vopr[q][3])
 
 
 
@@ -64,5 +74,7 @@ kn.clicked.connect(vopros)
 
 win.show()
 app.exec_()
+
+
 
 
