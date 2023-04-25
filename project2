@@ -1,0 +1,68 @@
+from PyQt5.QtWidgets import *
+from PyQt5.QtCore import Qt
+
+app = QApplication([])
+win = QWidget()
+win.setWindowTitle('тест')
+win.resize(400,200)
+
+
+line = QVBoxLayout()
+win.setLayout(line)
+
+line1 = QHBoxLayout()
+line.addLayout(line1)
+
+line2 = QHBoxLayout()
+line.addLayout(line2)
+
+line3 = QHBoxLayout()
+line.addLayout(line3)
+
+
+vopr =[
+    ['25+25=?', '60', '50', '30' ],
+    ['15-65=?', '-25', '-50', '50' ]
+
+]
+
+
+quest = QLabel(vopr[0][0]) # vopr[q][0] ===> q+=1
+b1 = QRadioButton(vopr[0][1])
+b2 = QRadioButton(vopr[0][2])
+b3 = QRadioButton(vopr[0][3])
+
+line1.addWidget(quest, alignment=Qt.AlignCenter)
+line2.addWidget(b1)
+line2.addWidget(b2)
+line2.addWidget(b3)
+
+kn = QPushButton('следующий вопрос')
+line3.addWidget(kn)
+
+def otvet():
+    if b2.isChecked():
+        txt = QMessageBox()
+        txt.setText('правильно')
+        txt.exec_()
+    else:
+        txt2 = QMessageBox()
+        txt2.setText('неправильно')
+        txt2.exec_()
+
+b2.clicked.connect(otvet)
+        
+def vopros():
+
+
+
+kn.clicked.connect(vopros)       
+
+
+    
+
+
+win.show()
+app.exec_()
+
+
