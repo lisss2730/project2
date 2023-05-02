@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
+import sys
 
 app = QApplication([])
 win = QWidget()
@@ -22,7 +23,12 @@ line.addLayout(line3)
 q=0
 vopr =[
     ['25+25=?', '60', '50', '30' ],
-    ['15-65=?', '-25', '-50', '50' ]
+    ['15-65=?', '-25', '-50', '50' ],
+    ['60*2=?', '112', '120', '70' ],
+    ['5-100=?', '-80', '-95', '95' ],
+    ['-1+1=?', '1', '0', '-2'],
+    ['11+37=?', '0', '48', '26'],
+    ['7*8=?', '50', '56', '78']
 
 ]
 
@@ -43,38 +49,39 @@ line3.addWidget(kn)
 kn2 = QPushButton('завершить')
 line3.addWidget(kn2)
 
-def otvet():
+def prav_otvet():
     if b2.isChecked():
         txt = QMessageBox()
         txt.setText('правильно')
         txt.exec_()
-    else:
+
+b2.clicked.connect(prav_otvet)
+
+def neprav_otvet():
+    if b1.isChecked() or b3.isChecked():
         txt2 = QMessageBox()
         txt2.setText('неправильно')
         txt2.exec_()
 
-b2.clicked.connect(otvet)
-        
+b1.clicked.connect(neprav_otvet)
+b3.clicked.connect(neprav_otvet)
 
+        
 def vopros():
     global q
     q+=1
+    if q>len(vopr)-1:
+        q=0
     quest.setText(vopr[q][0])
     b1.setText(vopr[q][1])
     b2.setText(vopr[q][2])
     b3.setText(vopr[q][3])
 
+kn.clicked.connect(vopros)   
 
-
-kn.clicked.connect(vopros)       
-
-
-    
-
+def vyhod():
+    sys.exit()
+kn2.clicked.connect(vyhod)
 
 win.show()
 app.exec_()
-
-
-
-
