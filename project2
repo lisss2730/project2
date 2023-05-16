@@ -4,6 +4,7 @@ import sys
 
 app = QApplication([])
 win = QWidget()
+win.setStyleSheet('background: azure')
 win.setWindowTitle('тест')
 win.resize(400,200)
 
@@ -59,16 +60,27 @@ kn2 = QPushButton('завершить')
 line3.addWidget(kn2)
 
 def prav_otvet():
+    global q
+        q+=1
     if b2.isChecked():
         txt = QMessageBox()
+        txt.setStyleSheet('background: azure')
         txt.setText('правильно')
         txt.exec_()
+        
+        if q>len(vopr)-1:
+            q=0
+        quest.setText(vopr[q][0])
+        b1.setText(vopr[q][1])
+        b2.setText(vopr[q][2])
+        b3.setText(vopr[q][3])
 
 b2.clicked.connect(prav_otvet)
 
 def neprav_otvet():
     if b1.isChecked() or b3.isChecked():
         txt2 = QMessageBox()
+        txt2.setStyleSheet('background: azure')
         txt2.setText('неправильно')
         txt2.exec_()
 
@@ -81,6 +93,7 @@ def vopros():
     q+=1
     if q>len(vopr)-1:
         txxt1 = QMessageBox()
+        txxt1.setStyleSheet('background: azure')
         txxt1.setText('спасибо, что прошли тест!')
         txxt1.exec_()
 
@@ -95,6 +108,7 @@ kn.clicked.connect(vopros)
 
 def vyhod():
     txxt = QMessageBox()
+    txxt.setStyleSheet('background: azure')
     txxt.setText('спасибо, что прошли тест!')
     txxt.exec_()
 
