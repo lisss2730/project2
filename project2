@@ -59,23 +59,6 @@ line3.addWidget(kn)
 kn2 = QPushButton('завершить')
 line3.addWidget(kn2)
 
-def prav_otvet():
-    global q
-        q+=1
-    if b2.isChecked():
-        txt = QMessageBox()
-        txt.setStyleSheet('background: azure')
-        txt.setText('правильно')
-        txt.exec_()
-        
-        if q>len(vopr)-1:
-            q=0
-        quest.setText(vopr[q][0])
-        b1.setText(vopr[q][1])
-        b2.setText(vopr[q][2])
-        b3.setText(vopr[q][3])
-
-b2.clicked.connect(prav_otvet)
 
 def neprav_otvet():
     if b1.isChecked() or b3.isChecked():
@@ -114,6 +97,25 @@ def vyhod():
 
     sys.exit()
 kn2.clicked.connect(vyhod)
+
+def prav_otvet():
+    global q
+    q+=1
+    if b2.isChecked():
+        txt = QMessageBox()
+        txt.setStyleSheet('background: azure')
+        txt.setText('правильно')
+        txt.exec_()
+
+        if q>len(vopr)-1:
+            q=0
+        quest.setText(vopr[q][0])
+        b1.setText(vopr[q][1])
+        b2.setText(vopr[q][2])
+        b3.setText(vopr[q][3])
+
+
+b2.clicked.connect(prav_otvet)
 
 win.show()
 app.exec_()
