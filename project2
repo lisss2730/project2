@@ -64,7 +64,7 @@ def neprav_otvet():
     if b1.isChecked() or b3.isChecked():
         txt2 = QMessageBox()
         txt2.setStyleSheet('background: azure')
-        txt2.setText('неправильно')
+        txt2.setText('неправильно. Попробуйте ещё раз')
         txt2.exec_()
 
 b1.clicked.connect(neprav_otvet)
