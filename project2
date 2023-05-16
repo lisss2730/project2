@@ -80,7 +80,12 @@ def vopros():
     global q
     q+=1
     if q>len(vopr)-1:
-        q=0
+        txxt1 = QMessageBox()
+        txxt1.setText('спасибо, что прошли тест!')
+        txxt1.exec_()
+
+        sys.exit()
+
     quest.setText(vopr[q][0])
     b1.setText(vopr[q][1])
     b2.setText(vopr[q][2])
