@@ -99,14 +99,14 @@ def vyhod():
 kn2.clicked.connect(vyhod)
 
 def prav_otvet():
-    global q
-    q+=1
     if b2.isChecked():
         txt = QMessageBox()
         txt.setStyleSheet('background: azure')
         txt.setText('правильно')
         txt.exec_()
-
+        
+        global q
+        q+=1
         if q>len(vopr)-1:
             q=0
         quest.setText(vopr[q][0])
