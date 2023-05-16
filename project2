@@ -108,7 +108,12 @@ def prav_otvet():
         global q
         q+=1
         if q>len(vopr)-1:
-            q=0
+            txxt = QMessageBox()
+            txxt.setText('спасибо, что прошли тест!')
+            txxt.setStyleSheet('background: azure')
+            txxt.exec_()
+
+            sys.exit()
         quest.setText(vopr[q][0])
         b1.setText(vopr[q][1])
         b2.setText(vopr[q][2])
